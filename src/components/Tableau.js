@@ -42,7 +42,7 @@ for(let card of this.props.tableau[key]){
       divStyle["top"] = topposition
       divStyle["left"] = left
 
-      row.push(<img key={card.image_url} src={process.env.PUBLIC_URL + '/hearts/test/zoraheart7.png'} draggable="true" style={divStyle} />)
+      row.push(<img key={card.image_url} src={process.env.PUBLIC_URL + `${card.image_url}`} draggable="true" style={divStyle} />)
       }
 }
       return row
