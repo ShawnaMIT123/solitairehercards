@@ -7,18 +7,43 @@ import logo from '../logo.svg';
 import Draggable from 'react-draggable';
 
 class Tableau extends React.Component {
-// <Draggable><Image src={process.env.PUBLIC_URL + '/hearts/zoraheart7.png'}  style={divStyle} size='small' className="diamond" /> </ Draggable>
 
-columns = ()=>{
 
-      // return _.times(7, i => (
-      //   <Grid.Column stackable key={i}>
-          // <Image src={process.env.PUBLIC_URL + '/hearts/zoraheart7.png'}  size='huge' className="diamond" />
-      //     <Image src={process.env.PUBLIC_URL + '/hearts/zoraheart7.png'} className="club" />
-      //
-      //   </Grid.Column>
-      // ))
-      return   <Image src={process.env.PUBLIC_URL + '/hearts/zoraheart7.png'}  size='small' className="diamond" />
+onDragStart = (ev, card, key) => {
+
+  card["colkey"] = key
+
+  ev.dataTransfer.setData("card", JSON.stringify(card))
+  // ev.dataTransfer.setData("colkey", JSON.stringify(key))
+  this.props.updateDraggedCard(card)
+
+
+   ////store id for when dropped
+}
+
+onDragOver = (ev) => {
+           ev.preventDefault();
+}
+onDrop = (ev, card, key) => {
+          // card["colkey"] = key
+
+           let draggedCard = JSON.parse(ev.dataTransfer.getData("card"));
+           let cardUnderneath = card
+           this.props.removeCardfromTableauColumn(draggedCard)
+           this.props.addCardToTableauColumn(draggedCard, key)
+
+           // let tasks = this.state.tasks.filter((task)=>{
+           //       if (task.name == id) {
+           //             task.category = cat;
+           //       }
+           //       return task
+           // })
+           //
+           // this.setState({
+           //       ... this.state,
+           //       tasks
+           // });
+
 }
 
 columns2= ()=>{
@@ -42,7 +67,7 @@ for(let card of this.props.tableau[key]){
       divStyle["top"] = topposition
       divStyle["left"] = left
 
-      row.push(<img key={card.image_url} src={process.env.PUBLIC_URL + `${card.image_url}`} draggable="true" style={divStyle} />)
+      row.push(<img key={card.image_url} onDragOver={(e)=>this.onDragOver(e)} onDragStart={(e)=> this.onDragStart(e, card, key)}src={process.env.PUBLIC_URL + `${card.image_url}`} draggable="true" style={divStyle} onDrop={(e)=>this.onDrop(e, card, key)}/>)
       }
 }
       return row

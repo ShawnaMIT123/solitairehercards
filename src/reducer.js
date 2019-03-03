@@ -9,7 +9,10 @@ import {
   ADD_TRACK_TO_PLAYLIST,
   UPDATE_NEW_PLAYLIST_FORM_DISPLAYED,
   ADD_NEW_ROOM,
-  UPDATE_JOIN_FORM_DISPLAYED
+  UPDATE_JOIN_FORM_DISPLAYED,
+  UPDATE_DRAGGED_CARD,
+  REMOVE_CARD_FROM_TABLEAU_COL,
+  ADD_CARD_TO_TABLEAU_COL
 } from './actions/types'
 
 class Deck{
@@ -84,7 +87,8 @@ function cardstotableu() {
 const defaultState =  {
 deck: deck,
 tableau: cardstotableu(),
-stockpile:cardsinpile
+stockpile:cardsinpile,
+draggedCard: null
 
 
 
@@ -94,7 +98,7 @@ stockpile:cardsinpile
 
 
 function reducer(state=defaultState, action){
-  console.log(action.type)
+  console.log(action.payload)
   switch (action.type) {
     case "UPDATE_TRACK_RESULTS":
       console.log('updating track results with', action.payload)
@@ -135,6 +139,26 @@ function reducer(state=defaultState, action){
                                 }
                           })
                     }
+      case (UPDATE_DRAGGED_CARD):
+                    return Object.assign({}, state, {draggedCard: action.payload.draggedCard})
+      case (REMOVE_CARD_FROM_TABLEAU_COL):
+      return {
+        ...state,
+        tableau: {
+          ...state.tableau,
+          [parseInt(action.payload.removedCard.colkey)]: state.tableau[action.payload.removedCard.colkey].slice(0, -1)
+        }
+      }
+      case (ADD_CARD_TO_TABLEAU_COL):
+      return {
+        ...state,
+        tableau: {
+          ...state.tableau,
+          [parseInt(action.payload.newColumn)]: [...state.tableau[action.payload.newColumn].slice(0), action.payload.transferredCard ]
+        }
+      }
+
+
 
     default:
       return state
@@ -142,3 +166,7 @@ function reducer(state=defaultState, action){
 }
 
 export default reducer
+
+// action.payload.removedCard.colkey
+
+  // return {...state, tableau:{...state.tableau, {1: state.action.payload.removedCard}}
