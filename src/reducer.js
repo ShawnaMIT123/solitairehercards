@@ -25,12 +25,12 @@ class Deck{
   reset(){
     this.deck = [];
 
-    const suits = ['Hearts', 'Spades', 'Clubs', 'Diamonds'];
+    const suits = ['Hearts', 'Spades', 'Diamonds', 'Clubs'];
     const values = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 
     for (let suit in suits) {
       for (let value of values) {
-        this.deck.push({suit: `${suits[suit]}`, value, image_url: `/${suits[suit]}/${value}.png`});
+        this.deck.push({suit: `${suits[suit]}`, value, image_url: `/${suits[suit]}/${value}.png`, hidden: true});
       }
 
     }
@@ -62,23 +62,48 @@ function cardstotableu() {
      let arr = []
       for(let card of cardsintableau){
         if(Object.keys(obj).length == 0){
+          card["hidden"] = false
           obj[i] = [card]
           i++
-
-        } else if (!obj[i] ) {
+        } else if (!obj[i]) {
           obj[i] = [card]
         } else if (obj[i].length < i ) {
-
-          obj[i] = obj[i].concat([card])
-
-          if(obj[i].length == i){
+          if(obj[i].length == i - 1){
+            card["hidden"] = false
+            obj[i] = obj[i].concat([card])
             i++
+          } else {
+
+            obj[i] = obj[i].concat([card])
+
           }
         }
       }
       return obj
 }
 
+// function cardstotableu() {
+//       let i = 1
+//       let obj = {}
+//
+//      let arr = []
+//       for(let card of cardsintableau){
+//         if(Object.keys(obj).length == 0){
+//           obj[i] = [card]
+//           i++
+//         } else if (!obj[i] ) {
+//           obj[i] = [card]
+//         } else if (obj[i].length < i ) {
+//
+//           obj[i] = obj[i].concat([card])
+//           if(obj[i].length == i){
+//             i++
+//           }
+//         }
+//       }
+//       return obj
+// }
+//
 
 
 

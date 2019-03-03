@@ -21,38 +21,70 @@ onDragStart = (ev, card, key) => {
    ////store id for when dropped
 }
 
-onDragOver = (ev) => {
-           ev.preventDefault();
+onDragOver = (ev, card) => {
+
+    // let draggedCard = JSON.parse(ev.dataTransfer.getData("card"));
+    // let cardUnderneath = card
+
+     // let draggedCard = JSON.parse(ev.dataTransfer.getData("card"));
+    //  console.log(ev.dataTransfer.getData("card"))
+
+    // for(let key in this.props.tableau){
+    //   let arr = this.props.tableau[key]
+    //   /if card is the last card in column
+    //
+    //   if(arr[arr.length - 1].image_url == card.image_url && card.image_url !== draggedCard.image_url){
+    //     console.log("last card :", card)
+    //     // console.log("draggedCard", draggedCard)
+    //
+    //
+    //
+    //   }
+// }
+
+  ev.preventDefault();
+
 }
+
 onDrop = (ev, card, key) => {
-          // card["colkey"] = key
+
+
+
+
 
            let draggedCard = JSON.parse(ev.dataTransfer.getData("card"));
+            console.log(draggedCard)
            let cardUnderneath = card
-           this.props.removeCardfromTableauColumn(draggedCard)
-           this.props.addCardToTableauColumn(draggedCard, key)
+           console.log("onDrop", card)
+             let suits = ['Hearts', 'Spades', 'Diamonds', 'Clubs'];
+             let cardUnderneathIndex = suits.findIndex(suit => suit === cardUnderneath.suit) + 1
+             let draggedCardIndex = suits.findIndex(suit => suit === draggedCard.suit) + 1
+             debugger
 
-           // let tasks = this.state.tasks.filter((task)=>{
-           //       if (task.name == id) {
-           //             task.category = cat;
-           //       }
-           //       return task
-           // })
-           //
-           // this.setState({
-           //       ... this.state,
-           //       tasks
-           // });
+           for(let key in this.props.tableau){
+             let arr = this.props.tableau[key]
+             ////if card is the last card in column
+               if(arr[arr.length - 1].image_url == cardUnderneath.image_url){
 
+                 if(draggedCard.value == cardUnderneath.value - 1  && Math.sign(cardUnderneathIndex) !== Math.sign(draggedCardIndex)){
+                   this.props.removeCardfromTableauColumn(draggedCard)
+                   this.props.addCardToTableauColumn(draggedCard, key)
+                 }
+               }
+            }
+
+
+
+           // this.props.updateDraggedCard(card)
 }
 
 columns2= ()=>{
 let row = []
-let  left = 0
+let  left = 200
 for(let key in this.props.tableau){
 
-      let topposition = 0
-      left += 200
+      let topposition = 200
+      left += 120
 
 
 for(let card of this.props.tableau[key]){
@@ -60,20 +92,21 @@ for(let card of this.props.tableau[key]){
 
       let divStyle = {
              position: "absolute",
-             width: "150px",
-             height: "250 px"
+             width: "100px",
+             height: "200 px"
       }
-      topposition += 30
+      topposition += 20
       divStyle["top"] = topposition
       divStyle["left"] = left
 
-      row.push(<img key={card.image_url} onDragOver={(e)=>this.onDragOver(e)} onDragStart={(e)=> this.onDragStart(e, card, key)}src={process.env.PUBLIC_URL + `${card.image_url}`} draggable="true" style={divStyle} onDrop={(e)=>this.onDrop(e, card, key)}/>)
+      row.push(<img key={card.image_url} src={card.hidden ? process.env.PUBLIC_URL + '/backofcard.png'  : process.env.PUBLIC_URL + `${card.image_url}`} onDragOver={(e)=>this.onDragOver(e, card)} onDragStart={(e)=> this.onDragStart(e, card, key)} draggable="true" style={divStyle} onDrop={(e)=>this.onDrop(e, card, key)} />)
       }
 }
       return row
 
 }
  // draggable src={process.env.PUBLIC_URL + '/hearts/zoraheart7.png'}  style={divStyle}  className="diamond" key={card.image_url}
+// process.env.PUBLIC_URL/backofcard.png
 render() {
       let elems = this.columns2()
   return (
