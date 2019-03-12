@@ -51,8 +51,8 @@ onDrop = (ev, card, key) => {
 
 
 
-
            let draggedCard = JSON.parse(ev.dataTransfer.getData("card"));
+           debugger;
             console.log(draggedCard)
            let cardUnderneath = card
            console.log("onDrop", card)
@@ -65,8 +65,10 @@ onDrop = (ev, card, key) => {
              let arr = this.props.tableau[key]
              ////if card is the last card in column
                if(arr[arr.length - 1].image_url == cardUnderneath.image_url){
+                 debugger
 
-                 if(draggedCard.value == cardUnderneath.value - 1  && Math.sign(cardUnderneathIndex) !== Math.sign(draggedCardIndex)){
+                 if(draggedCard.value == cardUnderneath.value - 1  && cardUnderneathIndex%2 !== draggedCardIndex%2){
+                   debugger
                    this.props.removeCardfromTableauColumn(draggedCard)
                    this.props.addCardToTableauColumn(draggedCard, key)
                  }
@@ -77,10 +79,32 @@ onDrop = (ev, card, key) => {
 
            // this.props.updateDraggedCard(card)
 }
+onDoubleClick = (ev, card, key) => {
+
+
+
+
+
+
+
+          let arr = this.props.tableau[parseInt(key)]
+          let last_card = arr[arr.length - 1];
+
+          if(card.image_url == last_card.image_url){
+            this.props.revealCardInTableau(card, key)
+          }
+
+
+
+
+
+
+}
 
 columns2= ()=>{
 let row = []
-let  left = 200
+let  left = 0
+//200 orginally
 for(let key in this.props.tableau){
 
       let topposition = 200
@@ -93,13 +117,13 @@ for(let card of this.props.tableau[key]){
       let divStyle = {
              position: "absolute",
              width: "100px",
-             height: "200 px"
+             height: "135px"
       }
       topposition += 20
       divStyle["top"] = topposition
       divStyle["left"] = left
 
-      row.push(<img key={card.image_url} src={card.hidden ? process.env.PUBLIC_URL + '/backofcard.png'  : process.env.PUBLIC_URL + `${card.image_url}`} onDragOver={(e)=>this.onDragOver(e, card)} onDragStart={(e)=> this.onDragStart(e, card, key)} draggable="true" style={divStyle} onDrop={(e)=>this.onDrop(e, card, key)} />)
+      row.push(<img key={card.image_url} src={card.hidden ? process.env.PUBLIC_URL + '/backofcard.png'  : process.env.PUBLIC_URL + `${card.image_url}`} onDragOver={(e)=>this.onDragOver(e, card)} onDragStart={(e)=> this.onDragStart(e, card, key)} draggable={card.hidden ? false : true} style={divStyle} onDrop={(e)=>this.onDrop(e, card, key)} onDoubleClick={(e)=>this.onDoubleClick(e, card, key)} />)
       }
 }
       return row

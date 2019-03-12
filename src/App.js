@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { simpleAction } from './actions/simpleAction';
-import { updateDraggedCard, removeCardfromTableauColumn, addCardToTableauColumn } from './actions/actionCreators.js';
+import { updateDraggedCard, removeCardfromTableauColumn, addCardToTableauColumn, addCardToFoundation, revealCardInTableau } from './actions/actionCreators.js';
 import { connect } from 'react-redux';
 import Tableau from './components/Tableau.js'
+import Foundation from './components/Foundation.js'
 import {Button, Icon} from 'semantic-ui-react'
 
 import { bindActionCreators } from 'redux'
@@ -21,7 +22,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      <Foundation {...this.props} />
       <Tableau {...this.props} />
+
 
       <pre>
 {
@@ -44,7 +47,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ...bindActionCreators({ updateDraggedCard,  removeCardfromTableauColumn, addCardToTableauColumn}, dispatch)
+        ...bindActionCreators({ updateDraggedCard,  removeCardfromTableauColumn, addCardToTableauColumn, addCardToFoundation, revealCardInTableau }, dispatch)
     }
 }
 // const mapDispatchToProps = dispatch => ({

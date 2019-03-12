@@ -12,7 +12,9 @@ import {
   UPDATE_JOIN_FORM_DISPLAYED,
   UPDATE_DRAGGED_CARD,
   REMOVE_CARD_FROM_TABLEAU_COL,
-  ADD_CARD_TO_TABLEAU_COL
+  ADD_CARD_TO_TABLEAU_COL,
+  ADD_CARD_TO_FOUNDATION,
+  REVEAL_CARD_IN_TABLEAU
 } from './actions/types'
 
 class Deck{
@@ -113,7 +115,8 @@ const defaultState =  {
 deck: deck,
 tableau: cardstotableu(),
 stockpile:cardsinpile,
-draggedCard: null
+draggedCard: null,
+foundation: {1:[],2:[],3:[],4:[]}
 
 
 
@@ -182,6 +185,30 @@ function reducer(state=defaultState, action){
           [parseInt(action.payload.newColumn)]: [...state.tableau[action.payload.newColumn].slice(0), action.payload.transferredCard ]
         }
       }
+      case (REVEAL_CARD_IN_TABLEAU):
+      return {
+        ...state,
+        tableau: {
+          ...state.tableau,
+          [parseInt(action.payload.newColumn)]: state.tableau[action.payload.newColumn].map((card, index)=>{
+            if(card.image_url === action.payload.transferredCard.image_url) {
+              return Object.assign({}, card, {
+                hidden: false
+              })
+            }
+            return card
+          })
+        }
+      }
+      case (ADD_CARD_TO_FOUNDATION):
+      return {
+        ...state,
+        foundation: {
+          ...state.foundation,
+          [parseInt(action.payload.newColumn)]: [...state.foundation[action.payload.newColumn].slice(0), action.payload.transferredCard ]
+        }
+      }
+
 
 
 

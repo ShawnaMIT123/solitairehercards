@@ -13,7 +13,9 @@ import {
   UPDATE_JOIN_FORM_DISPLAYED,
   UPDATE_DRAGGED_CARD,
   REMOVE_CARD_FROM_TABLEAU_COL,
-  ADD_CARD_TO_TABLEAU_COL
+  ADD_CARD_TO_TABLEAU_COL,
+  ADD_CARD_TO_FOUNDATION,
+  REVEAL_CARD_IN_TABLEAU
 } from './types'
 
 export function updateDraggedCard(card){
@@ -27,6 +29,14 @@ export function removeCardfromTableauColumn(card){
 export function addCardToTableauColumn(card, key){
         return ({type: ADD_CARD_TO_TABLEAU_COL, payload: { transferredCard: card, newColumn: key}})
 }
+export function revealCardInTableau(card, key){
+        return ({type: REVEAL_CARD_IN_TABLEAU, payload: { transferredCard: card, newColumn: key}})
+}
+export function addCardToFoundation(card, key){
+        return ({type: ADD_CARD_TO_FOUNDATION, payload: { transferredCard: card, newColumn: key}})
+}
+
+
 //
 // export function currentUser(){
 //   return (dispatch) => {
