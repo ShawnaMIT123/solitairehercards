@@ -6,6 +6,7 @@
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
     "react-draggable": "^3.2.1",
+    "react-multidrag": "^1.0.2",
     "react-redux": "^6.0.0",
     "react-scripts": "2.1.5",
     "redux": "^4.0.1",

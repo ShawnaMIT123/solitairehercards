@@ -14,7 +14,12 @@ import {
   REMOVE_CARD_FROM_TABLEAU_COL,
   ADD_CARD_TO_TABLEAU_COL,
   ADD_CARD_TO_FOUNDATION,
-  REVEAL_CARD_IN_TABLEAU
+  REVEAL_CARD_IN_TABLEAU,
+  REMOVE_CARD_FROM_STOCK_PILE,
+  ADD_CARD_TO_DISCARD,
+  REMOVE_DISCARD,
+  TRANSFER_DISCARD_TO_STOCK_PILE,
+  REMOVE_CARD_FROM_DISCARD
 } from './actions/types'
 
 class Deck{
@@ -116,7 +121,8 @@ deck: deck,
 tableau: cardstotableu(),
 stockpile:cardsinpile,
 draggedCard: null,
-foundation: {1:[],2:[],3:[],4:[]}
+foundation: {1:[],2:[],3:[],4:[]},
+discard: []
 
 
 
@@ -141,9 +147,7 @@ function reducer(state=defaultState, action){
             })
         case (UPDATE_ROOM_PLAYLIST):
                     return Object.assign({}, state, {rooms: action.payload.rooms})
-        case (ADD_NEW_ROOM):
-                    return {...state, rooms: [...state.rooms, action.payload.room]}
-        case (DISPLAY_SONG_SEARCH):
+  case (DISPLAY_SONG_SEARCH):
                     return Object.assign({}, state, {songSearchResults: action.payload.songSearchResults})
       case (UPDATE_CURRENT_USERS):
                     return Object.assign({}, state, {users: action.payload.users})
@@ -177,6 +181,20 @@ function reducer(state=defaultState, action){
           [parseInt(action.payload.removedCard.colkey)]: state.tableau[action.payload.removedCard.colkey].slice(0, -1)
         }
       }
+      case (REMOVE_CARD_FROM_STOCK_PILE):
+      let newState = [...state.stockpile]
+      newState.splice(-1,1)
+      return {
+        ...state,
+        stockpile: newState
+      }
+      case (REMOVE_CARD_FROM_DISCARD):
+      let newDiscardState = [...state.discard]
+      newDiscardState.splice(-1,1)
+      return {
+        ...state,
+        discard: newDiscardState
+      }
       case (ADD_CARD_TO_TABLEAU_COL):
       return {
         ...state,
@@ -208,6 +226,20 @@ function reducer(state=defaultState, action){
           [parseInt(action.payload.newColumn)]: [...state.foundation[action.payload.newColumn].slice(0), action.payload.transferredCard ]
         }
       }
+
+      case (ADD_CARD_TO_DISCARD):
+                  return {...state, discard: [...state.discard, action.payload.transferredCard]}
+      case (TRANSFER_DISCARD_TO_STOCK_PILE):
+      let newStockState = [...state.discard].reverse()
+      let newStockPile = newStockState.map((card)=>{
+        card["hidden"] = true
+        return card
+      })
+          return {...state, stockpile: newStockPile}
+
+      case (REMOVE_DISCARD):
+                  return {...state, discard: []}
+
 
 
 

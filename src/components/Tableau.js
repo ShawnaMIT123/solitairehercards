@@ -51,26 +51,33 @@ onDrop = (ev, card, key) => {
 
 
 
+
            let draggedCard = JSON.parse(ev.dataTransfer.getData("card"));
-           debugger;
-            console.log(draggedCard)
+
+
            let cardUnderneath = card
-           console.log("onDrop", card)
+
              let suits = ['Hearts', 'Spades', 'Diamonds', 'Clubs'];
              let cardUnderneathIndex = suits.findIndex(suit => suit === cardUnderneath.suit) + 1
              let draggedCardIndex = suits.findIndex(suit => suit === draggedCard.suit) + 1
-             debugger
+
 
            for(let key in this.props.tableau){
              let arr = this.props.tableau[key]
              ////if card is the last card in column
                if(arr[arr.length - 1].image_url == cardUnderneath.image_url){
-                 debugger
+
 
                  if(draggedCard.value == cardUnderneath.value - 1  && cardUnderneathIndex%2 !== draggedCardIndex%2){
-                   debugger
-                   this.props.removeCardfromTableauColumn(draggedCard)
+
+                   // this.props.removeCardfromTableauColumn(draggedCard)
                    this.props.addCardToTableauColumn(draggedCard, key)
+
+                   if(this.props.discard.map((card)=>card.image_url).includes(draggedCard.image_url)){
+                     this.props.removeCardFromDiscard()
+                   } else{
+                     this.props.removeCardfromTableauColumn(draggedCard)
+                   }
                  }
                }
             }

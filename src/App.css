@@ -50,3 +50,12 @@ top:250px; */
       height: 200px;
       border: 1px solid black;
 }
+
+/* WILL DETERMINE STYLE WHEN DRAGGING OVER */
+.md-dragging {
+    border: 1px dotted;
+}
+/* WILL DETERMINE STYLE WHEN ACTIVE IN DRAGGING LIST */
+.md-active {
+    background: #DDDDFF;
+}

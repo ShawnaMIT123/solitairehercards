@@ -75,15 +75,25 @@ class Foundation extends React.Component {
 
             if(arr.length == 0){/// if stack empty
               if(draggedCard.value == 1){// if ace
-                this.props.removeCardfromTableauColumn(draggedCard)
+
                 this.props.addCardToFoundation(draggedCard, stackindex)
+                if(this.props.discard.map((card)=>card.image_url).includes(draggedCard.image_url)){
+                  this.props.removeCardFromDiscard()
+                } else{
+                  this.props.removeCardfromTableauColumn(draggedCard)
+                }
               }
             } else {
               let last_card = arr[arr.length - 1];
               let lastCardIndex = suits.findIndex(suit => suit === last_card.suit) + 1
               if(draggedCard.value == last_card.value + 1 && draggedCardIndex == lastCardIndex){
-                this.props.removeCardfromTableauColumn(draggedCard)
+
                 this.props.addCardToFoundation(draggedCard, stackindex)
+                if(this.props.discard.map((card)=>card.image_url).includes(draggedCard.image_url)){
+                  this.props.removeCardFromDiscard()
+                } else{
+                  this.props.removeCardfromTableauColumn(draggedCard)
+                }
               }
               // debugger
 
@@ -114,7 +124,7 @@ class Foundation extends React.Component {
 
  renderFoundation = ()=>{
  let row = []
- let left = 120
+ let left = 600
 //orginally 600
 
 
@@ -140,7 +150,7 @@ class Foundation extends React.Component {
  columns3= ()=>{
    let row = []
 
-   let left = 0
+   let left = 480
   // oringally 650
 
  for(let key in this.props.foundation){
