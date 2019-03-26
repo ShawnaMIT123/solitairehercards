@@ -27,8 +27,8 @@ export function updateDraggedCard(card){
         return ({type: UPDATE_DRAGGED_CARD, payload: {draggedCard: card}})
 }
 
-export function removeCardfromTableauColumn(card){
-        return ({type: REMOVE_CARD_FROM_TABLEAU_COL, payload: { removedCard: card }})
+export function removeCardfromTableauColumn(card, num){
+        return ({type: REMOVE_CARD_FROM_TABLEAU_COL, payload: { removedCard: card, index: num }})
 }
 export function removeCardfromStockPile(){
         return ({type: REMOVE_CARD_FROM_STOCK_PILE})

@@ -178,7 +178,7 @@ function reducer(state=defaultState, action){
         ...state,
         tableau: {
           ...state.tableau,
-          [parseInt(action.payload.removedCard.colkey)]: state.tableau[action.payload.removedCard.colkey].slice(0, -1)
+          [parseInt(action.payload.removedCard.colkey)]: state.tableau[action.payload.removedCard.colkey].slice(0, -action.payload.index)
         }
       }
       case (REMOVE_CARD_FROM_STOCK_PILE):
@@ -196,11 +196,13 @@ function reducer(state=defaultState, action){
         discard: newDiscardState
       }
       case (ADD_CARD_TO_TABLEAU_COL):
+      let currentTabColState = [...state.tableau[action.payload.newColumn].slice(0), action.payload.transferredCard ]
+
       return {
         ...state,
         tableau: {
           ...state.tableau,
-          [parseInt(action.payload.newColumn)]: [...state.tableau[action.payload.newColumn].slice(0), action.payload.transferredCard ]
+          [parseInt(action.payload.newColumn)]:   currentTabColState.flat()
         }
       }
       case (REVEAL_CARD_IN_TABLEAU):

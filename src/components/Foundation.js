@@ -34,7 +34,7 @@ class Foundation extends React.Component {
 
  onDragOver = (ev, card) => {
 
-   console.log("hello")
+
 
      // let draggedCard = JSON.parse(ev.dataTransfer.getData("card"));
      // let cardUnderneath = card
@@ -69,8 +69,7 @@ class Foundation extends React.Component {
             }
             let draggedCardIndex = suits.findIndex(suit => suit === draggedCard.suit) + 1
             let arr = this.props.foundation[stackindex]
-            console.log("stackindex", stackindex)
-            console.log("draggedCardValue", draggedCard.value)
+
 
 
             if(arr.length == 0){/// if stack empty
@@ -80,7 +79,16 @@ class Foundation extends React.Component {
                 if(this.props.discard.map((card)=>card.image_url).includes(draggedCard.image_url)){
                   this.props.removeCardFromDiscard()
                 } else{
-                  this.props.removeCardfromTableauColumn(draggedCard)
+                  let arr2 = this.props.tableau[parseInt(draggedCard.colkey)]
+                  let draggedCardNumIndex = arr2.findIndex(card => card.image_url === draggedCard.image_url)
+                  let draggedCards = arr2.slice(draggedCardNumIndex)
+                  let num = arr2.length - draggedCardNumIndex
+
+                  console.log("num", num)
+
+
+                  this.props.removeCardfromTableauColumn(draggedCard, num)
+                  // this.props.removeCardfromTableauColumn(draggedCard)
                 }
               }
             } else {
@@ -92,7 +100,16 @@ class Foundation extends React.Component {
                 if(this.props.discard.map((card)=>card.image_url).includes(draggedCard.image_url)){
                   this.props.removeCardFromDiscard()
                 } else{
-                  this.props.removeCardfromTableauColumn(draggedCard)
+                  let arr2 = this.props.tableau[parseInt(draggedCard.colkey)]
+                  let draggedCardNumIndex = arr2.findIndex(card => card.image_url === draggedCard.image_url)
+                  let draggedCards = arr2.slice(draggedCardNumIndex)
+                  let num = arr2.length - draggedCardNumIndex
+
+                  console.log("num", num)
+
+
+                  this.props.removeCardfromTableauColumn(draggedCard, num)
+                  // this.props.removeCardfromTableauColumn(draggedCard)
                 }
               }
               // debugger
@@ -154,16 +171,15 @@ class Foundation extends React.Component {
   // oringally 650
 
  for(let key in this.props.foundation){
-   console.log("key", key);
+
 
      left += 120
 
-   console.log("left", left)
+
 
 
    for(let card of this.props.foundation[key]){
-        console.log("card", card);
-            console.log("arr", this.props.foundation[key]);
+
        // let topposition = 0
 
        let divStyle = {
@@ -174,7 +190,7 @@ class Foundation extends React.Component {
        }
 
        divStyle["left"] = left
-       // console.log(left)
+
 
 
        row.push(<img key={card.image_url} src={card.hidden ? process.env.PUBLIC_URL + '/backofcard.png'  : process.env.PUBLIC_URL + `${card.image_url}`} onDragOver={(e)=>this.onDragOver(e, card)} onDragStart={(e)=> this.onDragStart(e, card, key)} draggable="true" style={divStyle} onDrop={(e)=>this.onDrop(e, card, key)} />)

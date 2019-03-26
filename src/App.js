@@ -10,6 +10,7 @@ import Test from './components/Test.js'
 import Foundation from './components/Foundation.js'
 import StockPile from './components/StockPile.js'
 import {Button, Icon} from 'semantic-ui-react'
+import CanvasComponent from './components/CanvasComponent.js'
 
 
 import { bindActionCreators } from 'redux'
@@ -30,17 +31,6 @@ class App extends Component {
       <Foundation {...this.props} />
       <Tableau {...this.props} />
       <Discard {...this.props} />
-
-
-
-      <pre>
-{
-JSON.stringify(this.props.tableau)
-}
-</pre>
-
-
-
 
 
       </div>
