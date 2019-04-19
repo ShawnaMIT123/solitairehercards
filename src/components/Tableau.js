@@ -138,6 +138,11 @@ onDrop = (ev, card, key) => {
 console.log("card", this.props.discard.map((card)=>card.image_url))
 console.log("cardUnderneath", card)
 console.log("includes", this.props.discard.map((card)=>card.image_url).includes(draggedCard.image_url))
+let foundationCards = []
+for(let arr in this.props.foundation){
+  foundationCards.push(this.props.foundation[arr])
+
+}
 
            for(let key in this.props.tableau){
              let arr = this.props.tableau[key]
@@ -153,9 +158,24 @@ console.log("includes", this.props.discard.map((card)=>card.image_url).includes(
 
 
                    if(this.props.discard.map((card)=>card.image_url).includes(draggedCard.image_url)){
+                     debugger
                      this.props.addCardToTableauColumn(draggedCard, key)
                      this.props.removeCardFromDiscard()
+                   }else if(foundationCards.map((foundCard)=>foundCard.image_url).includes(draggedCard.image_url)){
+                     debugger
+                     let num = null
+                     for(let arr in this.props.foundation){
+                       if(this.props.foundation[arr].map((card)=>card.image_url).includes(draggedCard.image_url)){
+                         num = arr
+                       }
+
+                     }
+                     this.props.addCardToTableauColumn(draggedCard, key)
+                     this.props.removeCardFromFoundation(num)
+
+
                    } else{
+                     debugger
                      let arr2 = this.props.tableau[parseInt(draggedCard.colkey)]
                      let draggedCardNumIndex = arr2.findIndex(card => card.image_url === draggedCard.image_url)
                         let draggedCards = arr2.slice(draggedCardNumIndex)

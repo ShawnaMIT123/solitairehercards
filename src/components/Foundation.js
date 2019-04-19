@@ -7,19 +7,7 @@ import logo from '../logo.svg';
 
 class Foundation extends React.Component {
 
- //  renderTrack = (roomid) => {
- //        let room = this.findRoom(roomid)
- //
- //    return room[0].tracks.map(track => {
- //          console.log("track", track)
- //      return <TableItem key={track.id} track={track} {...this.props}/>
- //    })
- //  }
- //
- //  findRoom = (roomid) => {
- //      return this.props.rooms.filter((room)=>(room.id == roomid))
- //
- // }
+
  onDragStart = (ev, card) => {
 
    // card["colkey"]
@@ -156,8 +144,8 @@ class Foundation extends React.Component {
          divStyle["left"] = left
          left += 120
 
-         row.push(<p className="rectangle" key={i}  onDragOver={(e)=>this.onDragOver(e, logo)} onDragStart={(e)=> this.onDragStart(e, logo)} draggable="true" onDrop={(e)=>this.onDrop(e, `${i} stack`)} style={divStyle}  />)
-
+         row.push(<p className="rectangle" key={i} onDragOver={(e)=>this.onDragOver(e, logo)} onDrop={(e)=>this.onDrop(e, `${i} stack`)}   style={divStyle}  />)
+// onDragStart={(e)=> this.onDragStart(e, logo)} draggable="true"
        }
 
        return row
@@ -207,8 +195,8 @@ class Foundation extends React.Component {
   let cards = this.columns3()
     return (
       <div>
-      {cards}
-     {elems}
+      {elems}
+     {cards}
        </div>  )
   }
 

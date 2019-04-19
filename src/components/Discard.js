@@ -6,20 +6,12 @@ class Discard extends React.Component {
 
 
   onDragStart = (ev, card) => {
-
-
     ev.dataTransfer.setData("card", JSON.stringify(card))
-
     this.props.updateDraggedCard(card)
-
-
   }
 
   onDragOver = (ev, card) => {
-
-
     ev.preventDefault();
-
   }
 
 
@@ -47,6 +39,7 @@ class Discard extends React.Component {
 
 
   }
+  
   renderDiscard = ()=>{
     let row = []
 
@@ -75,17 +68,13 @@ class Discard extends React.Component {
 
 
 
-render() {
-  let discard = this.renderDiscard()
-
-
-  return (
-        <div>
-        {discard}
-
-         </div>
-  );
-}
+  render() {
+    return (
+          <div>
+          {this.renderDiscard()}
+           </div>
+    );
+  }
 
 }
 
