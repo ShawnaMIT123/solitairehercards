@@ -1,69 +1,15 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In the project directory, users can play a game of solitaire with custom playing cards featuring iconic black women in leadership from the Heiritage LLC.
 
-## Available Scripts
+I co-founded and established Heiritage, LLC- a family friendly, toy and gaming company in January 2018 to celebrate self love of the African American Culture and Heritage. The Heiritage playing cards (1st edition) comprise 52 deck of cards featuring custom renditions 15 of our favorite super women who have fostered courage strength, and fortitude to break barriers and make significant contribution to American history. Some of the women featured in the deck are Michelle Obama, Rosa Parks, Harriett Tubman, Madam C. J. Walker, Nina Simone among others.
 
-In the project directory, you can run:
+I wanted to create a solitaire app to combine my two passions: (1) Coding + (2)Entrepreneurship!
 
-### `npm start`
+React
+Redux
+HTML5 Drag and Drop
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Recent Press:
+- https://blavity.com/these-mit-grads-created-a-deck-of-cards-featuring-historical-black-female-figures
+- https://verysmartbrothas.theroot.com/my-black-ass-deck-of-playing-cards-is-better-and-blacke-1833324233
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-# solitairehercards
+Decks can be purchased hercards.com!

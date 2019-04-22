@@ -12,10 +12,10 @@ class StockPile extends React.Component {
   }
 
   recyleDiscard = () => {
-    console.log("recyleDiscard")
     this.props.transferDiscardToStockPile()
     this.props.removeDiscard()
   }
+  
   renderStockPile = ()=>{
     let row = []
     let top = 50
