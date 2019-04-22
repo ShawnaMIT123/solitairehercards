@@ -9,24 +9,6 @@ class StockPile extends React.Component {
     this.props.removeCardfromStockPile()
     card["hidden"] = false
     this.props.addCardToDiscard(card)
-
-
-
-
-
-
-            // let arr = this.props.tableau[parseInt(key)]
-            // let last_card = arr[arr.length - 1];
-            //
-            // if(card.image_url == last_card.image_url){
-            //   this.props.revealCardInTableau(card, key)
-            // }
-
-
-
-
-
-
   }
 
   recyleDiscard = () => {
@@ -71,10 +53,6 @@ class StockPile extends React.Component {
                  left: "50px"
           }
           return <p className="rectangle" key={"recycle"}  style={divStyle} onClick={(e)=>this.recyleDiscard()}/>
-
-
-
-
 
   }
 

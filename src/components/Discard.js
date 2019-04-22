@@ -14,32 +14,6 @@ class Discard extends React.Component {
     ev.preventDefault();
   }
 
-
-  onClick = (ev, card) => {
-    // console.log(card)
-    // this.props.removeCardfromStockPile()
-    // card["hidden"] = false
-    // this.props.addCardToDiscard(card)
-
-
-
-
-
-
-            // let arr = this.props.tableau[parseInt(key)]
-            // let last_card = arr[arr.length - 1];
-            //
-            // if(card.image_url == last_card.image_url){
-            //   this.props.revealCardInTableau(card, key)
-            // }
-
-
-
-
-
-
-  }
-  
   renderDiscard = ()=>{
     let row = []
 

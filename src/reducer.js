@@ -84,6 +84,7 @@ discard: []
 
 
 function reducer(state=defaultState, action){
+  console.log(action)
   switch (action.type) {
       case (UPDATE_DRAGGED_CARD):
                     return Object.assign({}, state, {draggedCard: action.payload.draggedCard})
@@ -100,7 +101,7 @@ function reducer(state=defaultState, action){
         ...state,
         foundation: {
           ...state.foundation,
-          [parseInt(action.payload.num)]: state.foundation[action.payload.num].slice(0, -1)
+          [parseInt(action.payload.index)]: state.foundation[parseInt(action.payload.index)].slice(0, -1)
         }
       }
       case (REMOVE_CARD_FROM_STOCK_PILE):

@@ -45,6 +45,6 @@ export function addCardToFoundation(card, key){
 export function addCardToDiscard(card){
         return ({type: ADD_CARD_TO_DISCARD, payload: { transferredCard: card}})
 }
-export function removeCardFromFoundation(card, num){
+export function removeCardFromFoundation(num){
         return ({type: REMOVE_CARD_FROM_FOUNDATION, payload: { index: num }})
 }
