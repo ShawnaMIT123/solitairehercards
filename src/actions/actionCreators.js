@@ -10,7 +10,9 @@ import {
   TRANSFER_DISCARD_TO_STOCK_PILE,
   REMOVE_DISCARD,
   REMOVE_CARD_FROM_DISCARD,
-  REMOVE_CARD_FROM_FOUNDATION
+  REMOVE_CARD_FROM_FOUNDATION,
+  START_TIMER,
+  INCREMENT_TIMER
 } from './types'
 
 export function updateDraggedCard(card){
@@ -47,4 +49,15 @@ export function addCardToDiscard(card){
 }
 export function removeCardFromFoundation(num){
         return ({type: REMOVE_CARD_FROM_FOUNDATION, payload: { index: num }})
+}
+
+export function startTimer(){
+      return {
+            type: START_TIMER
+      }
+}
+export function incrementTimer(){
+      return {
+            type: INCREMENT_TIMER
+      }
 }
