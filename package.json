@@ -8,7 +8,7 @@
     "react-draggable": "^3.2.1",
     "react-multidrag": "^1.0.2",
     "react-redux": "^6.0.0",
-    "react-scripts": "2.1.5",
+    "react-scripts": "5.0.1",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "semantic-ui-react": "^0.85.0"
